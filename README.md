@@ -2,9 +2,9 @@
   <img src="docs/assets/architecture_diagram.svg" alt="TargetTruth architecture banner" width="100%">
 </p>
 
-<h1 align="center">TargetTruth</h1>
+<h1 align="center">CarbonLedgerX</h1>
 <p align="center"><strong>Climate Commitment Failure Intelligence Platform</strong></p>
-<p align="center">Built on the CarbonLedgerX analytical engine</p>
+<p align="center"><em>Previously prototyped as "TargetTruth" - unified under CarbonLedgerX for v1.0</em></p>
 
 <p align="center">
   <a href="https://github.com/yaswankum2622-code/cabonledgerX"><img src="https://img.shields.io/badge/repo-public_portfolio-0F172A?style=for-the-badge&logo=github&logoColor=white" alt="Public portfolio repo"></a>
@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/fastapi-read--only_API-059669?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI read-only API">
   <img src="https://img.shields.io/badge/forecasting-deterministic_%2B_statistical-2563EB?style=for-the-badge" alt="Deterministic and statistical forecasting">
   <img src="https://img.shields.io/badge/scoring-heuristic_%2B_probabilistic_%2B_reconciled-B7791F?style=for-the-badge" alt="Scoring layers">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License"></a>
 </p>
 
 <p align="center">
@@ -38,6 +39,21 @@ This repo is not a notebook bundle and it is not a generic ESG dashboard. It is 
 - intervention simulation, MAC-style ranking, and evidence-pack generation
 - a premium Streamlit dashboard and a thin FastAPI service
 
+---
+
+## Headline Results
+
+| Dimension | Result | Details |
+|---|---|---|
+| Data sources ingested | 3 real public datasets | EPA eGRID (2022, 2023), DEFRA GHG Conversion Factors 2025, SBTi target database |
+| Companies modeled | ~500 synthetic portfolio | Sector-conditioned, reproducible, demonstrates methodology at scale |
+| Forecasting approaches | 2 parallel stacks | Deterministic business-rule projection + statistical models with backtesting |
+| Scoring layers | 3 reconciled views | Heuristic · Probabilistic (calibrated) · Reconciled (disagreement-aware) |
+| Decision surfaces | Intervention MAC ranking | Marginal abatement cost analysis + evidence packs |
+| Code footprint | 81 Python files | Layered package architecture under `src/carbonledgerx/` |
+
+---
+
 ## Why It Stands Out
 
 - **Auditable**: the calculator layer shows activity inputs, factor references, and baseline deltas instead of hiding the math.
@@ -53,24 +69,21 @@ The platform is organized as a layered climate intelligence stack: raw factors a
 
 ## Product Gallery
 
-<table>
-  <tr>
-    <td width="50%">
-      <img src="docs/assets/screenshots/dashboard_executive.png" alt="Executive overview dashboard" width="100%">
-    </td>
-    <td width="50%">
-      <img src="docs/assets/screenshots/dashboard_risk.png" alt="Risk and reconciliation dashboard" width="100%">
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="docs/assets/screenshots/dashboard_calculator.png" alt="Calculator and baseline audit dashboard" width="100%">
-    </td>
-    <td width="50%">
-      <img src="docs/assets/screenshots/dashboard_interventions.png" alt="Intervention strategy dashboard" width="100%">
-    </td>
-  </tr>
-</table>
+<div align="center">
+
+### Executive Overview
+![Executive overview dashboard](docs/assets/screenshots/dashboard_executive.png)
+
+### Risk and Reconciliation
+![Risk and reconciliation dashboard](docs/assets/screenshots/dashboard_risk.png)
+
+### Calculator Audit
+![Calculator and baseline audit dashboard](docs/assets/screenshots/dashboard_calculator.png)
+
+### Intervention Strategy
+![Intervention strategy dashboard](docs/assets/screenshots/dashboard_interventions.png)
+
+</div>
 
 ## Core Capabilities
 
@@ -189,6 +202,7 @@ Best demo flow:
 - [10 Future Work](docs/10_future_work.md)
 - [Deployment](docs/DEPLOYMENT.md)
 - [Interview Prep](docs/INTERVIEW_PREP.md)
+- [Verification and Reproducibility Guide](docs/VERIFICATION.md)
 - [Changelog](docs/CHANGELOG.md)
 - [Architecture Decision Records](docs/adr)
 
@@ -198,6 +212,23 @@ Best demo flow:
 - It does not use a single opaque score; it exposes heuristic, probabilistic, and reconciled views.
 - It does not bury assumptions; the calculator, forecast evaluation, and reconciliation layers are all explicit.
 - It does not end at diagnosis; it recommends ranked interventions and evidence-pack outputs.
+
+## Why I Built This
+
+Most ESG tooling in 2026 falls into two buckets: enterprise platforms that cost $50K–$500K per year and are black-box, or Excel-plus-PDF workflows that consultants charge hourly to maintain. Neither surfaces the question that actually matters to a board, a lender, or a climate-aware investor: is this company's commitment credible, and if not, what should be done?
+
+CarbonLedgerX is my attempt to show that this question can be answered by a layered analytical system - real factor ingestion, activity-based emissions logic, dual-stack forecasting, multi-layer scoring, and intervention ranking - not by a dashboard and a vibe. The entire analytical core runs locally on parquet, is auditable end-to-end, and is decision-oriented rather than diagnostic-only.
+
+It is deliberately a non-LLM project. My portfolio already includes an agentic RAG system (CortexAgent). This project demonstrates classical ML discipline: probabilistic calibration, forecast backtesting, and causal framing for interventions. One project shows I can build with LLMs. The other shows I know when to use different tools.
+
+## What I'd Do Differently
+
+Honest reflection from the build:
+
+- **Company data is synthetic by design, but I would layer a real adapter earlier.** The methodology is sound; a real issuer adapter would make the product story tighter.
+- **Probabilistic scoring is calibrated against synthetic deterministic labels.** In a production setting I would recalibrate against the actual 2015–2020 SBTi commitment outcome cohort now that those targets have matured.
+- **The dashboard is a single Streamlit app.** For a real product deployment I would split the intelligence console from the audit console - different users, different access patterns.
+- **Storage is local parquet.** For multi-tenant use this would move to DuckDB-backed or Postgres-backed persistence with a thin API caching layer.
 
 ## Current Constraints
 
