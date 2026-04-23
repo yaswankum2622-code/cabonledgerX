@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="docs/assets/architecture_diagram.svg" alt="TargetTruth architecture banner" width="100%">
-</p>
+
 
 <h1 align="center">CarbonLedgerX</h1>
 <p align="center"><strong>Climate Commitment Failure Intelligence Platform</strong></p>
