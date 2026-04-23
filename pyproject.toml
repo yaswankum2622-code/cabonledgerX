@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "carbonledgerx"
+version = "0.1.0"
+description = "Production-shaped scaffold for climate analytics data ingestion and validation."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2,<3.0",
+    "polars>=1.12,<2.0",
+    "openpyxl>=3.1,<4.0",
+    "duckdb>=1.1,<2.0",
+    "pyarrow>=17,<20",
+    "streamlit>=1.40,<2.0",
+    "altair>=5.4,<6.0",
+    "matplotlib>=3.9,<4.0",
+    "scikit-learn>=1.5,<2.0",
+    "fastapi>=0.115,<1.0",
+    "uvicorn>=0.32,<1.0",
+    "pydantic>=2.8,<3.0",
+    "pydantic-settings>=2.4,<3.0",
+    "python-dotenv>=1.0,<2.0",
+    "rich>=13.9,<14.0",
+    "typer>=0.12,<1.0",
+    "pytest>=8.3,<9.0",
+    "httpx>=0.28,<1.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
